@@ -4,7 +4,7 @@ class Pangram
 
   def self.pangram?(string)
     characters = string.downcase.chars.uniq
-    ('a'..'z').all? { |letter| characters.include?(letter) }
+    ALPHABET.all? { |letter| characters.include?(letter) }
   end
 
 end

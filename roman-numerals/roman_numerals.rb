@@ -1,7 +1,7 @@
 class Integer
 
   VALUES = {
-    ones: ["I","X","C","M"],
+    units: ["I","X","C","M"],
     fives: ["V","L","D"]
   }
 
@@ -9,7 +9,7 @@ class Integer
     output = ""
     digits = self.to_s
     (0..digits.length - 1).each do |position|
-      output << digits[position].to_i.digit_calculation(digits.length - 1 - position)
+      output << digits[position].to_i.digit_calculation(digits.length - position - 1)
     end
     output
   end
@@ -18,15 +18,15 @@ class Integer
     digit = ""
     case
     when self <= 3
-      digit << VALUES[:ones][position] * self
+      digit << VALUES[:units][position] * self
     when self <= 4
-      digit << VALUES[:ones][position] + VALUES[:fives][position]
-    when self <= 5
+      digit << VALUES[:units][position] + VALUES[:fives][position]
+    when self == 5
       digit << VALUES[:fives][position]
     when self <= 8
-      digit << VALUES[:fives][position]+ VALUES[:ones][position] * (self - 5)
+      digit << VALUES[:fives][position]+ VALUES[:units][position] * (self - 5)
     when self == 9
-      digit << VALUES[:ones][position] + VALUES[:ones][position + 1]
+      digit << VALUES[:units][position] + VALUES[:units][position + 1]
     end
     digit
   end
